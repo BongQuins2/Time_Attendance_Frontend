@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+  <title>Employee Time In/Out</title>
+</head>
+  <body>
+    <div class="panel panel-primary">
+       <div align="center" class="panel-heading">Employee Time In/Out Details</div>
+       <table class="table">
+          <tr>
+            <td  align="center">Date</td>
+            <td align="center">Time In</td>
+            <td align="center">Time Out</td>
+          </tr>
+          <tr ng-repeat="timetracker in emptimetrackerCtrl.timetrackers">
+            <td align="center">{{timetracker.tt_date}}</td>
+            <td align="center">{{timetracker.time_in}}</td>
+            <td align="center">{{timetracker.time_out}}</td>
+          </tr>
+       </table>
+    </div>
+  </body>
+</html>

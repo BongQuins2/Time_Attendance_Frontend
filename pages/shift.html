@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="panel panel-primary">
+  <div align="center" class="panel-heading">Add Shift Schedule</div>
+  <p></p>
+  <form class="form-inline" role="form">
+    <div class="form-group">
+      <label for="shiftstart">Shift Start:</label>
+      <input type="text" class="form-control" id="shiftstart" placeholder="Enter Shift Start" ng-model="shiftCtrl.shift_start">
+    </div>
+    <div class="form-group">
+      <label for="shiftend">Shift End:</label>
+      <input type="text" class="form-control" id="shiftend" placeholder="Enter Shift End" ng-model="shiftCtrl.shift_end">
+    </div>
+    <div class="form-group">
+      <label for="shiftbreak">Shift Break:</label>
+      <input type="text" class="form-control" id="shiftbreak" placeholder="Enter Shift Break" ng-model="shiftCtrl.shift_break">
+    </div>
+    <div class="form-group">
+      <label for="shifttype">Shift Type:</label>
+      <input type="text" class="form-control" id="shifttype" placeholder="Enter Shift Type" ng-model="shiftCtrl.shift_name">
+    </div>
+    <button type="button" class="btn btn-primary" ng-click="shiftCtrl.saveShift(0)">Add</button>
+  </form>
+</div>
+<div class="panel panel-primary">
+   <div align="center" class="panel-heading">Available Shift Schedule</div>
+   <table class="table">
+     <thead>
+       <tr>
+         <th>Edit?</th>
+         <th>Shift ID</th>
+         <th>Shift Start</th>
+         <th>Shift End</th>
+         <th>Shift Break</th>
+         <th>Shift Type</th>
+         <th>Action</th>
+       </tr>
+     </thead>
+      <tr ng-repeat="shift in shiftCtrl.shifts">
+        <td><input type="checkbox" ng-model="f.editMode"/></td>
+        <td>{{shift.shift_id}}</td>
+       <td>
+         <div class="form-group">
+           <span ng-show="!f.editMode">{{shift.shift_start}}</span>
+           <input type="text" class="form-control" id="shift_start" placeholder="shift.shift_start" ng-model="shift.shift_start" ng-show="f.editMode"/>
+         </div>
+       </td>
+       <td>
+         <div class="form-group">
+           <span ng-show="!f.editMode">{{shift.shift_end}}</span>
+           <input type="text" class="form-control" id="shift_end" placeholder="shift.shift_end" ng-model="shift.shift_end" ng-show="f.editMode"/>
+         </div>
+       </td>
+       <td>
+         <div class="form-group">
+           <span ng-show="!f.editMode">{{shift.shift_break}}</span>
+           <input type="text" class="form-control" id="shift_break" placeholder="shift.shift_break" ng-model="shift.shift_break" ng-show="f.editMode"/>
+         </div>
+       </td>
+       <td>
+         <div class="form-group">
+           <span ng-show="!f.editMode">{{shift.shift_name}}</span>
+           <input type="text" class="form-control" id="shift_name" placeholder="shift.shift_name" ng-model="shift.shift_name" ng-show="f.editMode"/>
+         </div>
+        </td>
+          <td><button type="button" class="btn btn-danger" ng-click="shiftCtrl.deleteShift(shift.shift_id)">Delete</button></td>
+          <td><button type="button" class="btn btn-success" ng-click="shiftCtrl.editShift(shift.shift_id, shift.shift_start, shift.shift_end, shift.shift_break, shift.shift_name)" ng-show="f.editMode">Update</button></td>
+     </tr>
+   </table>
+</div>
+
+</body>
+</html>

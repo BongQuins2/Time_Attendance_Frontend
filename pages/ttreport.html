@@ -1,0 +1,60 @@
+<div>
+    <div align="left">
+      <label>Select a Report</label>
+    </div>
+    <form name="myform">
+      <table>
+        <tr>
+          <td>
+            <select name="one" onchange="
+              if (this.selectedIndex==2){
+              this.form['emp_username'].style.visibility='visible',
+              this.form['clearbtn'].style.visibility='visible'}
+              else{this.form['emp_username'].style.visibility='hidden',
+              this.form['clearbtn'].style.visibility='hidden'};">
+
+              <option value="" selected="selected">Select a Report...</option>
+              <option value="1" selected>View All Employees</option>
+              <option value="2">View By Employee</option>
+
+            </select>
+
+            <input type="text" ng-model="empusername" name="emp_username" style="visibility:hidden;"/>
+            <button type="button" class="btn btn-info" ng-click="empusername = '' " name="clearbtn" style="visibility:hidden;">clear</button>
+          </td>
+
+        </tr>
+      </table>
+      <td><button type="button" class="btn btn-info" ng-click="ttReportCtrl.generateTTReport(empusername)">Generate</button></td>
+    </form>
+<div>
+    <!-- <div id="printableArea" align="center">
+      <label>Employees Time In/Out</label>
+    </div> -->
+<div class="panel panel-primary" id="printableArea">
+  <div align="center" class="panel-heading">Employees Time In/Out</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Time Tracker ID</th>
+        <th>Date</th>
+        <th>Employee Username</th>
+        <th>Time In</th>
+        <th>Time Out</th>
+        <th>Employee Fullname</th>
+        <th>Employee ID</th>
+      </tr>
+    </thead>
+     <tr ng-repeat="viewtimetracker in ttReportCtrl.viewtimetrackers">
+      <td>{{viewtimetracker.ttId}}</td>
+      <td>{{viewtimetracker.tt_date}}</td>
+      <td>{{viewtimetracker.emp_username}}</td>
+      <td>{{viewtimetracker.time_in}}</td>
+      <td>{{viewtimetracker.time_out}}</td>
+      <td>{{viewtimetracker.emp_fullname}}</td>
+      <td>{{viewtimetracker.empId}}</td>
+    </tr>
+  </table>
+</div>
+<button type="button" class="btn btn-info" ng-click="ttReportCtrl.printDiv('printableArea');">Print</button>
+</div>

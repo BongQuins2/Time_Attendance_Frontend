@@ -1,0 +1,50 @@
+<!-- <html lang="en" ng-app="myLoginApp"> -->
+<html lang="en" ng-app="myApplication">
+<title>Time and Attendance
+</title>
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+  <meta name="google-signin-client_id" content="1082666706032-27t5arkc2r9rdnka9s1fk42baflrg0oc.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton"></script>
+</head>
+
+<!-- define angular controller -->
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <ul class="nav navbar-nav navbar-left">
+        <!-- <li><a href="#/"><i class="fa fa-user"></i> Login</a></li> -->
+        <!-- <li><a href="#/"></a></li> -->
+        <li><a href="#/timein_out"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#/timetracker"><i class="fa fa-user"></i> User Time In/Out</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/loginMain"><i class="fa fa-user-md"></i> Login Main</a></li>
+        <li><a href="#/shift"><i class="fa fa-user-md"></i> Shift</a></li>
+        <li><a href="#/employees"><i class="fa fa-user-md"></i> Employees</a></li>
+        <li><a href="#/empshift"><i class="fa fa-user-md"></i> Employee Shift</a></li>
+        <li><a href="#/ttreport"><i class="fa fa-user-md"></i> Timetracker Report</a></li>
+        <li><a href="#/logout"><i class="fa fa-power-off"></i>Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div ng-view></div>
+
+  </div>
+  <p/>
+  <p/>
+
+  <script src="/index.js"></script>
+</body>
+
+</html>

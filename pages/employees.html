@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="panel panel-primary">
+  <div align="center" class="panel-heading">Add Employee</div>
+  <p></p>
+  <form class="form-inline" role="form">
+    <div class="form-group">
+      <label for="fullname">UserName:</label>
+      <input type="text" class="form-control" id="username2" placeholder="Enter Username" ng-model="adminempCtrl.emp_username">
+    </div>
+    <div class="form-group">
+      <label for="fullname">FullName:</label>
+      <input type="text" class="form-control" id="fullname" placeholder="Enter FullName" ng-model="adminempCtrl.emp_fullname">
+    </div>
+    <div class="form-group">
+      <label for="emplevel">Employee Level:</label>
+      <input type="text" class="form-control" id="emplevel" placeholder="Enter Emp Level" ng-model="adminempCtrl.emp_level">
+    </div>
+    <button type="button" class="btn btn-primary" ng-click="adminempCtrl.saveEmployee(0)">Add</button>
+  </form>
+</div>
+<div class="panel panel-primary">
+   <div align="center" class="panel-heading">Available List of Employees</div>
+   <table class="table">
+     <thead>
+       <tr>
+         <th>Edit?</th>
+         <th>Emp ID</th>
+         <th>UserName</th>
+         <th>FullName</th>
+         <th>Level</th>
+         <th>Action</th>
+       </tr>
+     </thead>
+      <tr ng-repeat="emp in adminempCtrl.employee">
+        <td><input type="checkbox" ng-model="f.editMode"/></td>
+        <td>{{emp.empId}}</td>
+       <td>
+         <div class="form-group">
+           <span ng-show="!f.editMode">{{emp.emp_username}}</span>
+           <input type="text" class="form-control" id="emp_username" placeholder="emp.emp_username" ng-model="emp.emp_username" ng-show="f.editMode"/>
+         </div>
+         <!-- <span ng-show="!f.editMode">{{emp.emp_username}}</span>
+         <input type="text" ng-model="emp.emp_username" ng-show="f.editMode"/> -->
+       </td>
+       <td>
+         <div class="form-group">
+           <span ng-show="!f.editMode">{{emp.emp_fullname}}</span>
+           <input type="text" class="form-control" id="emp_fullname" placeholder="emp.emp_fullname" ng-model="emp.emp_fullname" ng-show="f.editMode"/>
+         </div>
+         <!-- <span ng-show="!f.editMode">{{emp.emp_fullname}}</span>
+         <input type="text" ng-model="emp.emp_fullname" ng-show="f.editMode"/> -->
+       </td>
+       <td>
+         <div class="form-group">
+           <span ng-show="!f.editMode">{{emp.emp_level}}</span>
+           <input type="text" class="form-control" id="emp_level" placeholder="emp.emp_level" ng-model="emp.emp_level" ng-show="f.editMode"/>
+         </div>
+         <!-- <span ng-show="!f.editMode">{{emp.emp_level}}</span>
+         <input type="text" ng-model="emp.emp_level" ng-show="f.editMode"/> -->
+       </td>
+         <td><button type="button" class="btn btn-danger" ng-click="adminempCtrl.deleteEmployee(emp.empId)">Delete</button></td>
+         <td><button type="button" class="btn btn-success" ng-click="adminempCtrl.editEmployee(emp.empId, emp.emp_username, emp.emp_fullname, emp.emp_level)" ng-show="f.editMode">Update</button></td>
+     </tr>
+   </table>
+</div>
+
+</body>
+</html>

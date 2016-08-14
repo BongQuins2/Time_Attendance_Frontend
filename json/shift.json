@@ -1,0 +1,5 @@
+[
+  {"shiftId":"S0001","shift_start":"9:00 AM","shift_end":"7:00 PM","shift_break":"12:00 PM","shift_name":"Regular Shift"},
+  {"shiftId":"S0002","shift_start":"12:00 PM","shift_end":"10:00 AM","shift_break":"5:00 AM","shift_name":"Mid Shift"},
+  {"shiftId":"S0003","shift_start":"7:00 PM","shift_end":"5:00 AM","shift_break":"12:00 AM","shift_name":"Night Shift"}
+]

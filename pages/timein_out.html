@@ -1,0 +1,41 @@
+<div class="jumbotron text-center">
+	<!-- /*<style>
+		table, th, td {
+			border: 3px solid black;
+		};
+	</style>*/ -->
+	<div class="container" >
+		<div class="col-sm-8 col-sm-offset-2">
+
+				<!-- PAGE HEADER -->
+		<div class="page-header">
+			<font size="6">Time In/Out Page </font>
+		</div>
+	</div>
+
+
+
+
+	<p></p>
+	<div>
+		<table align = "center">
+			<tr>
+				<td>Please select date:</td>
+				<td>
+					<div >
+						<select ng-model="timeCtrl.selectedDate" ng-options="date for date in timeCtrl.dates" ng-change="timeCtrl.checkButtonName()"></select>
+					</div>
+				</td>
+				<td>
+					<button  type="submit" ng-click="timeCtrl.submit(timeCtrl.selectedDate)" ng-model="timeCtrl.buttonName">
+						{{timeCtrl.buttonName || Message}}
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	</div>
+
+
+</div>
