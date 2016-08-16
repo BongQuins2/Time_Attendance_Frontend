@@ -19,13 +19,13 @@
 
             </select>
 
-            <input type="text" ng-model="empusername" name="emp_username" style="visibility:hidden;"/>
+            <input type="text" ng-model="ttReportCtrl.empusername" name="emp_username" style="visibility:hidden;"/>
             <button type="button" class="btn btn-info" ng-click="empusername = '' " name="clearbtn" style="visibility:hidden;">clear</button>
           </td>
 
         </tr>
       </table>
-      <td><button type="button" class="btn btn-info" ng-click="ttReportCtrl.generateTTReport(empusername)">Generate</button></td>
+      <td><button type="button" class="btn btn-info" ng-click="ttReportCtrl.generateTTReport(ttReportCtrl.empusername)">Generate</button></td>
     </form>
 <div>
     <!-- <div id="printableArea" align="center">

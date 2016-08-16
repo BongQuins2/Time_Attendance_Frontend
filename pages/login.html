@@ -1,9 +1,15 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-
-  </head>
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+  <meta name="google-signin-client_id" content="1082666706032-27t5arkc2r9rdnka9s1fk42baflrg0oc.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton"></script>
+</head>
 
 
   <body>
@@ -17,7 +23,7 @@
 
             <!-- FORM -->
             <!-- pass in the variable if our form is valid or invalid -->
-            <form name="userForm" ng-submit="submitForm(userForm.$valid,loginCtrl.emp_password)" novalidate>
+            <form name="userForm" ng-submit="submitForm(userForm.$valid,loginCtrl.emp_password)" novalidate >
 
               <!-- Username -->
                 <!-- <div class="form-group" >
@@ -73,6 +79,7 @@
         </div><!-- col-sm-8 -->
       </div><!-- /container -->
     </div><!-- controller-->
-
+    <script src="/../services/LoginService.js"></script>
+    <!-- <script src="/../controllers/LoginService.js"></script> -->
   </body>
 </html>
