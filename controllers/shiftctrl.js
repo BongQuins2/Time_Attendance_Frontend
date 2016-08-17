@@ -2,12 +2,7 @@ var myApp = angular.module('ShiftCtrl', ['ShiftSvc','CookieSvc']);
 myApp.controller('ShiftController', function ShiftController(ShiftService, CookieService, $scope, $location){
   var sc = this;
   sc.cookie_Obj = CookieService.readCookie();
-  sc.cookiePassword = null;
   if(sc.cookie_Obj != null){
-    sc.cookiePassword = sc.cookie_Obj['Password'];
-  }
-
-  if (sc.cookiePassword != null){
     sc.shiftData = shiftData;
     sc.editShift = editShift;
     sc.deleteShift = deleteShift;
@@ -49,7 +44,7 @@ myApp.controller('ShiftController', function ShiftController(ShiftService, Cooki
       };
       console.log("1st check: sc.obj:");
       console.log(sc.obj);
-      sc.endpointdelete = 'shift/remove';
+      sc.endpointdelete = '/remove/shift';
       ShiftService.savedelShift(sc.obj,sc.endpointdelete).then(function(response){
         alert("Shift Deleted Successfully!");
         shiftData();

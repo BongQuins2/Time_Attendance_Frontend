@@ -2,12 +2,7 @@ var myApp = angular.module('EmpShiftCtrl', ['EmpShiftSvc','CookieSvc']);
 myApp.controller('EmpShiftController', function EmpShiftController(EmpShiftService, EmpService, ShiftService, CookieService, $location){
   var esc = this;
   esc.cookie_Obj = CookieService.readCookie();
-  esc.cookiePassword = null;
   if(esc.cookie_Obj != null){
-    esc.cookiePassword = esc.cookie_Obj['Password'];
-  }
-
-  if (esc.cookiePassword != null){
     esc.empShiftData = empShiftData;
     esc.employeesData = employeesData;
     esc.shiftData = shiftData;
@@ -51,9 +46,9 @@ myApp.controller('EmpShiftController', function EmpShiftController(EmpShiftServi
           empId : esc.empId,
           shiftId : esc.shiftId
         };
-        esc.endpointsave = 'empshift/save';
+        esc.endpointsave = '/save/empshift';
       } else {
-        esc.endpointsave = 'empshift/update';
+        esc.endpointsave = '/update/empshift';
       }
       EmpShiftService.savedelEmpShift(esc.obj,esc.endpointsave).then(function(response){
         alert("Employee Shift Saved!");
@@ -85,7 +80,7 @@ myApp.controller('EmpShiftController', function EmpShiftController(EmpShiftServi
         empShiftId    : empShiftId
       };
       console.log("1st check: "+ esc.obj)
-      esc.endpointdelete = 'empshift/remove';
+      esc.endpointdelete = '/remove/empshift';
       EmpShiftService.savedelEmpShift(esc.obj,esc.endpointdelete).then(function(response){
         alert("Employee Deleted Successfully!");
         empShiftData();

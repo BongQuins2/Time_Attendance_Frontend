@@ -1,41 +1,40 @@
 <div class="jumbotron text-center">
-	<!-- /*<style>
-		table, th, td {
-			border: 3px solid black;
-		};
-	</style>*/ -->
-	<div class="container" >
-		<div class="col-sm-8 col-sm-offset-2">
+		<div class="container" >
+			<div class="col-sm-8 col-sm-offset-2">
 
-				<!-- PAGE HEADER -->
-		<div class="page-header">
-			<font size="6">Time In/Out Page </font>
+					<!-- PAGE HEADER -->
+			<div class="page-header">
+				<font size="6">Time In/Out Page </font>
+			</div>
 		</div>
 	</div>
 
-
-
-
-	<p></p>
 	<div>
-		<table align = "center">
+		<table align="center">
 			<tr>
-				<td>Please select date:</td>
+				<td align="center">
+					Date Today: <b>{{timeCtrl.date}} </b>
+					&nbsp &nbsp Time: <b>{{timeCtrl.time}}</b>
+				</td>
 				<td>
-					<div >
-						<select ng-model="timeCtrl.selectedDate" ng-options="date for date in timeCtrl.dates" ng-change="timeCtrl.checkButtonName()"></select>
+					<br></br>
+				</td>
+			</tr>
+			<tr>
+					<div class="wrapper">
+
+							<td>
+								<!-- <button ng-hide="loginCtrl.validatedsignedin" type="submit" class="btn btn-primary" style="height:50px; width:150px" align="center">
+									<font size="5">App Login</font>
+								</button> -->
+								<button  type="submit" ng-click="timeCtrl.submit()" ng-model="timeCtrl.buttonName" class="btn btn-primary" style="height:50px; width:400px" align="center">
+									<font size="4"><b>{{timeCtrl.buttonName || Message}}</b></font>
+								</button>
+							</td>
 					</div>
-				</td>
-				<td>
-					<button  type="submit" ng-click="timeCtrl.submit(timeCtrl.selectedDate)" ng-model="timeCtrl.buttonName">
-						{{timeCtrl.buttonName || Message}}
-					</button>
-				</td>
+
 			</tr>
 		</table>
 	</div>
-
-	</div>
-
 
 </div>

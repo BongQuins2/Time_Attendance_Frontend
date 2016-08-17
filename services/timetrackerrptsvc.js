@@ -17,7 +17,7 @@ myApp.service('TTReportService', function TTReportService($q, $http, ttreport_ob
   function getvOtherTTReport(obj) {
     console.log("getvOtherTTReport obj value: ");
     console.log(obj);
-    ts.endpoint = 'timetracker/viewByEmployee';
+    ts.endpoint = '/timetracker/viewByEmployee';
     var deferred = $q.defer();
     $http({
       method:'GET',

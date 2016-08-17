@@ -11,7 +11,7 @@ myApp.service('EmpTimeTrackerService',function EmpTimeTrackerService($q, $http, 
     console.log('EmpService.getUserTimetracker='+ empId);
 
     var defer = $q.defer();
-      var endpoint = 'user/timetracker';
+      var endpoint = '/user/timetracker';
       var URL = HOST + endpoint + '?emp_id=';
       $http.get(URL + empId).then(function(response) {
       // $http.get('./json/timetrackerlist.json').then(function(response) {

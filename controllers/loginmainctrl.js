@@ -2,19 +2,15 @@ var myApp = angular.module('LoginMainCtrl', ['LoginMainSvc','CookieSvc']);
 myApp.controller('loginMainController', function loginMainController(LoginMainService, EmpService, CookieService, $location){
   var lm = this;
   lm.cookie_Obj = CookieService.readCookie();
-  lm.cookiePassword = null;
 
   if(lm.cookie_Obj != null){
-    lm.cookiePassword = lm.cookie_Obj['Password'];
-  }
-
-  if (lm.cookiePassword != null){
     lm.employeesData = employeesData;
     lm.loginMainData = loginMainData;
     lm.saveLoginMain = saveLoginMain;
     lm.editLoginMain = editLoginMain;
     lm.deleteLoginMain = deleteLoginMain;
     lm.insertLoginMain = insertLoginMain;
+    lm.deleteLoginMain = deleteLoginMain;
 
     employeesData();
     loginMainData();
@@ -42,7 +38,7 @@ myApp.controller('loginMainController', function loginMainController(LoginMainSe
         //   user_name : lm.username
         // };
         // lm.endpointcheck = 'login/countusername';
-        // console.log('loginMainController insertLoginMain lm.username:'+lm.username);
+        console.log('loginMainController insertLoginMain lm.username:'+lm.username);
         // LoginMainService.countUsername(lm.obj,lm.endpointcheck).then(function(cnt_user){
         //   lm.cnt_user = cnt_user;
         //   console.log('LoginMainService.countUsername cnt_user:'+ cnt_user);
@@ -70,11 +66,10 @@ myApp.controller('loginMainController', function loginMainController(LoginMainSe
         userId   : userId,
         user_password : password
       };
-      console.log("1st check: ")
-      console.log(lm.obj)
-      //saveLoginMain(userId);
-      lm.endpointsave = 'login/update';
-      LoginMainService.savedelLogin(lm.obj,lm.endpointsave).then(function(response){
+      console.log("editLoginMain lm.obj:");
+      console.log(lm.obj);
+
+      LoginMainService.updateLogin(lm.obj).then(function(response){
         alert("User password has been reset/change!");
         loginMainData();
         employeesData();
@@ -94,8 +89,10 @@ myApp.controller('loginMainController', function loginMainController(LoginMainSe
         password : lm.password
       };
 
-      lm.endpointsave = 'login/save';
-      LoginMainService.savedelLogin(lm.obj,lm.endpointsave).then(function(response){
+      console.log('saveLoginMain lm.obj:');
+      console.log(lm.obj );
+
+      LoginMainService.saveLogin(lm.obj).then(function(response){
         alert("User Login Saved!");
         loginMainData();
         employeesData();
@@ -104,24 +101,23 @@ myApp.controller('loginMainController', function loginMainController(LoginMainSe
         lm.password = "";
 
       }, function(error){
-          alert('LoginMainService.savedelLogin Error: ' + error);
+          alert('LoginMainService.saveLoginMain Error: ' + error);
       });
-      }
+    }
 
     function deleteLoginMain(userId){
       console.log("initial: "+userId)
       lm.obj = {
         userId    : userId
       };
-      console.log("1st check: "+lm.obj)
-      lm.endpointdelete = 'login/remove';
-      LoginMainService.savedelLogin(lm.obj,lm.endpointdelete).then(function(response){
+      console.log("1st check: lm.obj:");
+        console.log(lm.obj);
+      LoginMainService.deleteLogin(lm.obj).then(function(response){
         alert("Login Deleted Successfully!");
         loginMainData();
         employeesData();
-
       }, function(error){
-          alert('Error ' + error);
+          alert('loginMainController deleteLogin Error: ' + error);
       });
     }
   }else{

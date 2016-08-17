@@ -2,12 +2,7 @@ var myApp = angular.module('EmployeeCtrl', ['EmployeeSvc','CookieSvc']);
 myApp.controller('EmpController', function EmpController(EmpService, CookieService, $location){
   var ec = this;
   ec.cookie_Obj = CookieService.readCookie();
-  ec.cookiePassword = null;
   if(ec.cookie_Obj != null){
-    ec.cookiePassword = ec.cookie_Obj['Password'];
-  }
-
-  if (ec.cookiePassword != null){
     ec.saveEmployee = saveEmployee;
     ec.editEmployee = editEmployee;
     ec.deleteEmployee = deleteEmployee;
@@ -59,7 +54,7 @@ myApp.controller('EmpController', function EmpController(EmpService, CookieServi
       };
       console.log("1st check: ec.obj:");
       console.log(ec.obj);
-      ec.endpointdelete = 'employee/remove';
+      ec.endpointdelete = '/remove/employee';
       // TAAdminService.savedelEmployee(ac.obj,ac.endpointdelete).then(function(response){
       EmpService.savedelEmployee(ec.obj,ec.endpointdelete).then(function(response){
         alert("Employee Deleted Successfully!");
@@ -81,12 +76,12 @@ myApp.controller('EmpController', function EmpController(EmpService, CookieServi
         console.log("saveEmployee ec insert value"+ ec.emp_username+" "+ec.emp_fullname+" "+ec.emp_level);
         console.log("obj insert value ec.obj:");
         console.log(ec.obj);
-        ec.endpointsave = 'employee/save';
+        ec.endpointsave = '/save/employee';
       } else {
         console.log("saveEmployee else pasok d2");
         console.log("2nd check: ec.obj:");
         console.log(ec.obj)
-        ec.endpointsave = 'employee/update';
+        ec.endpointsave = '/update/employee';
       }
       // TAAdminService.savedelEmployee(ac.obj,ac.endpointsave).then(function(response){
       EmpService.savedelEmployee(ec.obj,ec.endpointsave).then(function(response){

@@ -3,18 +3,11 @@ myApp.controller('TTReportController', function TTReportController(TTReportServi
   var tt = this;
 
   tt.cookie_Obj = CookieService.readCookie();
-  tt.cookiePassword = null;
   if(tt.cookie_Obj != null){
-    tt.cookiePassword = tt.cookie_Obj['Password'];
-  }
-
-  if (tt.cookiePassword != null){
-    //tt.timetracker = {};
     tt.ttReportViewAll = ttReportViewAll;
     tt.ttReportViewByEmployee = ttReportViewByEmployee;
     tt.generateTTReport = generateTTReport;
     tt.printDiv = printDiv;
-    //tt.objReport = { 1: 'View All Employees', 2: 'View By Employee' };
 
     ttReportViewAll();
 
@@ -49,8 +42,6 @@ myApp.controller('TTReportController', function TTReportController(TTReportServi
       };
       console.log("1st check: tt.obj:");
       console.log(tt.obj);
-      // tt.endpointget = '/employee/getempid';
-      // TAAdminService.getEmployeeId(tt.obj,tt.endpointget).then(function(empId){
       EmpService.getEmployeeId(tt.obj).then(function(empId){
       tt.empId = empId;
       //empId has value
@@ -61,11 +52,8 @@ myApp.controller('TTReportController', function TTReportController(TTReportServi
       };
       console.log("3rd check: tt.obj:");
       console.log(tt.obj);
-      // tt.endpointget = '/timetracker/viewByEmployee';
       TTReportService.getvOtherTTReport(tt.obj).then(function(viewtimetracker){
         tt.viewtimetrackers = viewtimetracker;
-
-
         }, function(error){
           alert(' TTReportController TTReportService.getvOtherTTReport Error: ' + error);
         });

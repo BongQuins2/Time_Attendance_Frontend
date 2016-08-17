@@ -4,27 +4,21 @@ myApp.service('LoginService', function LoginService($q, $http, HOST){
 
   var ls = this;
   ls.emp_password = '';
-
   ls.validateLogin = validateLogin;
-  function validateLogin(emp_username, emp_password){
+  function validateLogin(emp_username){
       var defer = $q.defer();
       console.log('LoginService.validateLogin');
       console.log('emp_username:'+emp_username);
-      console.log('emp_password:'+emp_password);
       ls.emp_username = emp_username;
-      ls.emp_password = emp_password;
-
-      // console.log('ls.emp_username:'+ ls.emp_username);
-      // console.log('ls.emp_password:'+ ls.emp_password);
 
       dataObj = {
-        "user_name":ls.emp_username,
-        "user_password":ls.user_password
+        "user_name":ls.emp_username
       };
 
-      var URL = HOST + 'checkusernamepassword';
-      var login = '?user_name=' + ls.emp_username + '&user_password=' + ls.emp_password;
-      $http.post(URL + login, dataObj)
+      ls.URL = HOST + '/login/countusername';
+      ls.login = '?user_name=' + ls.emp_username;
+      // $http.post(ls.URL + ls.login, dataObj)
+      $http.get(ls.URL + ls.login, dataObj)
         .success(function(data, status, headers, config){
             defer.resolve(data);
             console.log('LoginService.validateLogin post success:' + data);

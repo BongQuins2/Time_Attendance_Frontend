@@ -2,13 +2,8 @@ var myApp = angular.module('EmpTimeTrackerCtrl', ['EmpTimeTrackerSvc','CookieSvc
 myApp.controller('EmpTimetrackerController', function EmpTimetrackerController(CookieService, EmpService, EmpTimeTrackerService, $location,$scope){
   var etc = this;
   etc.cookie_Obj = CookieService.readCookie();
-  etc.cookiePassword = null;
 
   if(etc.cookie_Obj != null){
-    etc.cookiePassword = etc.cookie_Obj['Password'];
-  }
-
-  if (etc.cookiePassword != null){
     etc.timetrackers = [];
     // etc.empId = '';
     etc.tt_date = '';

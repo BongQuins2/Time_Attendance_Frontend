@@ -3,7 +3,10 @@ myApp.service('LoginMainService', function LoginMainService($q, $http, loginmain
 var lms = this;
 
 lms.getvAllUserLogin = getvAllUserLogin;
-lms.savedelLogin = savedelLogin;
+// lms.savedelLogin = savedelLogin;
+lms.saveLogin = saveLogin;
+lms.deleteLogin = deleteLogin;
+lms.updateLogin = updateLogin;
 // lms.countUsername = countUsername;
 
   function getvAllUserLogin(){
@@ -35,13 +38,68 @@ lms.savedelLogin = savedelLogin;
   //   return deferred.promise;
   // }
 
-  function savedelLogin(obj, endpoint){
-    console.log("obj value: "+obj);
-    //tas.shifts = getShift();
+  // function savedelLogin(obj, endpoint){
+  //   console.log("obj value: obj:");
+  //   console.log(obj);
+  //   //tas.shifts = getShift();
+  //   var deferred = $q.defer();
+  //   $http({
+  //     method:'POST',
+  //     url : HOST + endpoint,
+  //     params : obj
+  //   }).success(function (data, status, headers, config) {
+  //       //console.log(data);
+  //       deferred.resolve(data);
+  //     }).error(function (data, status, headers, config) {
+  //       deferred.reject(status);
+  //     });
+  //   return deferred.promise;
+  // }
+
+  function saveLogin(obj){
+    console.log("obj value: obj:");
+    console.log(obj);
+    lms.endpoint = '/save/login'
+    var deferred = $q.defer();
+    $http({
+      method:'POST',
+      url : HOST + lms.endpoint,
+      params : obj
+    }).success(function (data, status, headers, config) {
+        //console.log(data);
+        deferred.resolve(data);
+      }).error(function (data, status, headers, config) {
+        deferred.reject(status);
+      });
+    return deferred.promise;
+  }
+
+  function deleteLogin(obj){
+    console.log("obj value: obj:");
+    console.log(obj);
+    endpoint = '/remove/login';
     var deferred = $q.defer();
     $http({
       method:'POST',
       url : HOST + endpoint,
+      params : obj
+    }).success(function (data, status, headers, config) {
+        //console.log(data);
+        deferred.resolve(data);
+      }).error(function (data, status, headers, config) {
+        deferred.reject(status);
+      });
+    return deferred.promise;
+  }
+
+  function updateLogin(obj){
+    console.log("obj value: obj:");
+    console.log(obj);
+    lms.endpoint = '/update/login'
+    var deferred = $q.defer();
+    $http({
+      method:'POST',
+      url : HOST + lms.endpoint,
       params : obj
     }).success(function (data, status, headers, config) {
         //console.log(data);

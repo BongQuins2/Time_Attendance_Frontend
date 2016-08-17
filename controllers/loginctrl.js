@@ -28,27 +28,31 @@ myApp.controller('LoginController', function LoginController(LoginService,Cookie
         // console.log('Email: ' + profile.getEmail());
         lc.emp_username = profile.getEmail();
 
-        vm.readcookie_obj = CookieService.readCookie();
+        LoginService.validateLogin(lc.emp_username).then(function(loginstatus){
+           lc.loginstatus = loginstatus;
+           switch(lc.loginstatus) {
+               case 0:
+              //  case 3:
+                  //  alert('Invalid Username/Password!');
+                   alert('Invalid Username!');
+                   lc.emp_username = '';//clear username text box
+                  //  lc.emp_password = '';//clear password text box
 
-        if(vm.readcookie_obj!=null){
-          vm.cookieName = vm.readcookie_obj['Username'];
-          vm.cookiePassword = vm.readcookie_obj['Password'];
-
-          if (vm.cookieName==null||vm.cookiePassword==null){
-            CookieService.removeCookie();
-            vm.writestatus = CookieService.writeCookie(1,vm.cookieName);
-          }
-
-          if (vm.writestatus == 1){
-            lc.signin = true;
-            console.log('Write cookie username successful');
-          }else{
-            console.log('Write cookie username error!');
-          }
-        }else{
-          vm.writestatus = CookieService.writeCookie(1,lc.emp_username);
-          lc.signin = true;
-        }
+                   break;
+               case 1:
+                  //  alert('Login Successful!');
+                   console.log('Login Successful!');
+                   lc.writestatus = CookieService.writeCookie(lc.emp_username );
+                   lc.validatedsignin = true;
+                  //  $location.path("/timein_out");
+                   break;
+               default:
+                   vm.validatedsignin = false;
+                   alert('Unable to authenticate!');
+           }
+         }, function(error){
+            console.log("LoginController.validateLogin Error" + JSON.stringify({error: error}));
+        });
     }
 
     function onFailure(error) {
@@ -62,70 +66,12 @@ myApp.controller('LoginController', function LoginController(LoginService,Cookie
       console.log('LoginController onLoad');
       lc.signin = false;
       lc.validatedsignedin = false;
-      var cookieName_obj = CookieService.readCookie();
+      lc.cookieName_obj = CookieService.readCookie();
 
-      if(cookieName_obj!=null){
-        lc.cookieName = cookieName_obj['Username'];
-
-        if(lc.cookieName != null){
-          lc.signin = true;
-          lc.cookiePassword = cookieName_obj['Password'];
-
-          if(lc.cookiePassword != null){
-            lc.validatedsignedin = true;
-          }
-        }
+      if(lc.cookieName_obj!=null){
+        lc.validatedsignedin = true;
       }else{
         console.log('LoginController onLoad cookie is null.');
-      }
-    }
-
-    vm.submitForm = submitForm;
-    function submitForm(isValid,emp_password){
-      lc.cookieName_obj = CookieService.readCookie();
-      if(lc.cookieName_obj!=null){
-        lc.signin = true;
-      }else{
-        lc.signin = false;
-      }
-      console.log('lc.signin:'+ lc.signin);
-      if(isValid && lc.signin){
-        lc.emp_password = emp_password;
-        console.log('lc.emp_password:'+lc.emp_password);
-        lc.Username = lc.cookieName_obj['Username'];
-        LoginService.validateLogin(lc.Username, lc.emp_password).then(function(loginstatus){
-           lc.loginstatus = loginstatus;
-           switch(lc.loginstatus) {
-               case 0:
-               case 3:
-                   alert('Invalid Username/Password!');
-                   lc.emp_username = '';//clear username text box
-                   lc.emp_password = '';//clear password text box
-
-                   break;
-               case 2:
-                   alert('Login Successful!');
-                   lc.writestatus = CookieService.writeCookie(2,lc.emp_password);
-                   if (lc.writestatus == 1){
-                     lc.validatedsignin = true;
-                     console.log('Write cookie pw successful');
-                     $location.path("/timein_out");
-                   }else{
-                     console.log('Write cookie pw error!');
-                   }
-                   break;
-               default:
-                   vm.validatedsignin = false;
-                   alert('Unable to authenticate!');
-           }
-          //  vm.emp_username = '';//clear username text box
-           lc.emp_password = '';//clear password text box
-         }, function(error){
-            console.log("LoginController.validateLogin Error" + JSON.stringify({error: error}));
-        });
-      }else{
-        lc.emp_password = '';//clear password text box
-        alert('Please sign in with google first. Thanks!');
       }
     }
 
